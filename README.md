@@ -13,7 +13,7 @@ O repositório está estruturado da seguinte maneira:
 ## Modelo de Classes
 O sistema é baseado em uma hierarquia de classes que representam os diferentes tipos de itens do acervo. Cada classe de item suporta operações básicas de CRUD (Create, Read, Update, Delete), empréstimo e pesquisa de informações.
 
-![Modelo de Classes](biblioteca_universitaria.png)
+![Modelo de Classes](/src/main/java/com/uemg/biblioteca_universitaria/biblioteca_universitaria.png)
 
 ## Funcionalidades
 - **Cadastro de Itens**: Permite adicionar novos itens ao acervo.
