@@ -6,7 +6,7 @@ package com.uemg.biblioteca_universitaria;
 
 /**
  *
- * @author caiocdias
+ * @author Caio Cezar Dias, Isabely Toledo de Melo, Thaíssa Fernandes Silva, Luis Felippe?
  */
 public class Biblioteca_universitaria {
 
