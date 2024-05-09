@@ -3,6 +3,8 @@
  */
 
 package com.uemg.biblioteca_universitaria;
+import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
+import com.uemg.biblioteca_universitaria.model.classes.*;
 
 /**
  *
@@ -11,6 +13,9 @@ package com.uemg.biblioteca_universitaria;
 public class Biblioteca_universitaria {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        String[] autors = {"Caio", "Larissa"};
+        String[] keywords = {"Noite", "Cai"};
+        Acervo acervo = new Acervo(0, autors, "Quando a noite cai", 2014, keywords, true, "AAaaaa");
+        boxString(acervo.toString());
     }
 }

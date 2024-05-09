@@ -72,6 +72,17 @@ public class Acervo {
         this.setAcervoFlagEmprestado(acervoFlagEmprestado);
         this.setAcervoCDU(acervoCDU);
     }
+
+    @Override
+    public String toString() {
+        String res = "";
+        for (String autor: acervoAutores) {
+            res += autor + ". ";
+        }
+        res += "\n\n";
+        res += acervoTitulo + " - " + acervoAno;
+        return res;
+    }
     
     
 
