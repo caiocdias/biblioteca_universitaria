@@ -8,7 +8,7 @@ import com.uemg.biblioteca_universitaria.model.classes.*;
 
 /**
  *
- * @author Caio Cezar Dias, Isabely Toledo de Melo, Thaíssa Fernandes Silva, Luis Felippe?
+ * @author Caio Cezar Dias, Isabely Toledo de Melo, Thaíssa Fernandes Silva, Luis Felippe Fernandes Silve, Maicon Parreiras Fernandes
  */
 public class Biblioteca_universitaria {
 
