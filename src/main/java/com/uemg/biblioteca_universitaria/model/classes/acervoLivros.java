@@ -59,4 +59,40 @@ public class acervoLivros extends Acervo {
         this.livrosISBN = livrosISBN;
     }
 
+    @Override
+    public String toString() {
+        String res = ""; 
+        for (String autor: super.getAcervoAutores()) {
+            res += autor + ". ";
+        }
+        
+        res += super.getAcervoId() + ".";
+        res += "\n\n";
+        res += super.getAcervoTitulo() + " - " + this.getLivrosEdicao() + " - " + this.getLivrosCidade() + " - " + this.getLivrosEditora() + " - " + super.getAcervoAno();
+        res += "\n";
+        
+        res += this.getLivrosQtdPaginas();
+        
+        
+        res += "\n\n";
+        
+        res += this.getLivrosISBN();
+        
+        res += "\n\n";
+        for (String palavra: super.getAcervoPalavrasChave()) {
+            res += palavra + ". ";
+        }
+        
+        res += "\n\n";
+        if (super.isAcervoFlagEmprestado()) {
+            res += "Emprestado";
+        } else {
+            res += "Disponivel";
+        }
+        
+        res += "           CDU: " + super.getAcervoCDU();
+        
+        return res;
+    }
+    
 }

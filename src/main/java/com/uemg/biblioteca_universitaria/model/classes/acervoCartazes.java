@@ -26,5 +26,32 @@ public class acervoCartazes extends Acervo {
         this.cartazesTipo = cartazesTipo;
     }
     
+    @Override
+    public String toString() {
+        String res = ""; 
+        for (String autor: super.getAcervoAutores()) {
+            res += autor + ". ";
+        }
+        
+        res += super.getAcervoId() + ".";
+        res += "\n\n";
+        res += super.getAcervoTitulo() + " - " + this.getCartazesTipo() + " - " + super.getAcervoAno() + ".";
+        
+        res += "\n\n";
+        for (String palavra: super.getAcervoPalavrasChave()) {
+            res += palavra + ". ";
+        }
+        
+        res += "\n\n";
+        if (super.isAcervoFlagEmprestado()) {
+            res += "Emprestado";
+        } else {
+            res += "Disponivel";
+        }
+        
+        res += "           CDU: " + super.getAcervoCDU();
+        
+        return res;
+    }
     
 }

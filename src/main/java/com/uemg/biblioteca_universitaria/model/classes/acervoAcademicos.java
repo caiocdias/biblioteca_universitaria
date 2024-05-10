@@ -59,5 +59,40 @@ public class acervoAcademicos extends Acervo {
     public void setAcademicosDOI(String academicosDOI) {
         this.academicosDOI = academicosDOI;
     }
+    
+    @Override
+    public String toString() {
+        String res = ""; 
+        for (String autor: super.getAcervoAutores()) {
+            res += autor + ". ";
+        }
+        
+        res += super.getAcervoId() + ".";
+        res += "\n\n";
+        res += super.getAcervoTitulo() + " - " + this.getAcademicosEditora() + " - " + this.getAcademicosCidade() + " - " + super.getAcervoAno();
+        res += "\n";
+        
+        res += this.getAcademicosQtdPaginas();
+        
+        res += "\n\n";
+        
+        res += this.getAcademicosDOI();
+        
+        res += "\n\n";
+        for (String palavra: super.getAcervoPalavrasChave()) {
+            res += palavra + ". ";
+        }
+        
+        res += "\n\n";
+        if (super.isAcervoFlagEmprestado()) {
+            res += "Emprestado";
+        } else {
+            res += "Disponivel";
+        }
+        
+        res += "           CDU: " + super.getAcervoCDU();
+        
+        return res;
+    }
 
 }

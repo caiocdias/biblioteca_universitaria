@@ -44,4 +44,35 @@ public class acervoMidias extends Acervo {
         this.midiaISMN = midiaISMN;
     }
 
+    @Override
+    public String toString() {
+        String res = ""; 
+        for (String autor: super.getAcervoAutores()) {
+            res += autor + ". ";
+        }
+        
+        res += super.getAcervoId() + ".";
+        res += "\n\n";
+        res += super.getAcervoTitulo() + " - " + this.getMidiaTipo() + " - " + this.getMidiaProdutora() + " - " + super.getAcervoAno();
+        res += "\n\n";
+        
+        res += this.getMidiaISMN();
+        
+        res += "\n\n";
+        for (String palavra: super.getAcervoPalavrasChave()) {
+            res += palavra + ". ";
+        }
+        
+        res += "\n\n";
+        if (super.isAcervoFlagEmprestado()) {
+            res += "Emprestado";
+        } else {
+            res += "Disponivel";
+        }
+        
+        res += "           CDU: " + super.getAcervoCDU();
+        
+        return res;
+    }
+    
 }
