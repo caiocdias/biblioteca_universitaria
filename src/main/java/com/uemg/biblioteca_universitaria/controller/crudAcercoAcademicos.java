@@ -5,9 +5,9 @@
 package com.uemg.biblioteca_universitaria.controller;
 
 import com.uemg.biblioteca_universitaria.model.enums.academicosTipo;
-import com.uemg.biblioteca_universitaria.model.classes.Acervo;
 import com.uemg.biblioteca_universitaria.model.classes.acervoAcademicos;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
+import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcercoAcademicos {
@@ -64,5 +64,9 @@ public class crudAcercoAcademicos {
         } else {
             return false;
         }
+    }
+    
+    public static void imprimirAcervoAcademicos(acervoAcademicos acervoAcademicos) {
+        boxString(acervoAcademicos.toString());
     }
 }

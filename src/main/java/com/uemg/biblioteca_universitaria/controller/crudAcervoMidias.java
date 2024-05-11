@@ -6,6 +6,7 @@ package com.uemg.biblioteca_universitaria.controller;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
 import com.uemg.biblioteca_universitaria.model.classes.acervoMidias;
 import com.uemg.biblioteca_universitaria.model.enums.midiaTipo;
+import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcervoMidias {
@@ -52,5 +53,9 @@ public class crudAcervoMidias {
         } else {
             return false;
         }
+    }
+    
+    public static void imprimirAcervoMidias(acervoMidias acervoMidias) {
+        boxString(acervoMidias.toString());
     }
 }

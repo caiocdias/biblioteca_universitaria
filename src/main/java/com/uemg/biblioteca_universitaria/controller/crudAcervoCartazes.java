@@ -7,6 +7,7 @@ package com.uemg.biblioteca_universitaria.controller;
 import com.uemg.biblioteca_universitaria.model.classes.acervoCartazes;
 import com.uemg.biblioteca_universitaria.model.enums.cartazesTipo;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
+import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcervoCartazes {
@@ -52,5 +53,9 @@ public class crudAcervoCartazes {
         } else {
             return false;
         }
+    }
+    
+    public static void imprimirAcervoCartazes(acervoCartazes acervoCartazes) {
+        boxString(acervoCartazes.toString());
     }
 }

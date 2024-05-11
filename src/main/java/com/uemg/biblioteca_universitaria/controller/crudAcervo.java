@@ -4,6 +4,7 @@
  */
 package com.uemg.biblioteca_universitaria.controller;
 import com.uemg.biblioteca_universitaria.model.classes.*;
+import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcervo {
@@ -66,5 +67,9 @@ public class crudAcervo {
         catch (Exception e) {
             return false;
         }
-    }  
+    }
+    
+    public static void imprimirAcervo(Acervo acervo) {
+        boxString(acervo.toString());
+    }
 }

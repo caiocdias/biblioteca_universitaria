@@ -5,6 +5,7 @@
 package com.uemg.biblioteca_universitaria.controller;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
 import com.uemg.biblioteca_universitaria.model.classes.acervoRelatorios;
+import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcervoRelatorios {
@@ -33,5 +34,9 @@ public class crudAcervoRelatorios {
         } else {
             return false;
         }
+    }
+    
+    public static void imprimirAcervoRelatorios(acervoRelatorios acervoRelatorios) {
+        boxString(acervoRelatorios.toString());
     }
 }
