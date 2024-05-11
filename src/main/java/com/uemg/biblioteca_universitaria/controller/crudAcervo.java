@@ -4,11 +4,7 @@
  */
 package com.uemg.biblioteca_universitaria.controller;
 import com.uemg.biblioteca_universitaria.model.classes.*;
-import com.uemg.biblioteca_universitaria.model.enums.*;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class crudAcervo {
     public static boolean cadastrarAcervo(Acervo acervo) {
@@ -71,4 +67,7 @@ public class crudAcervo {
             return false;
         }
     }
+    
+    
+    
 }
