@@ -23,6 +23,7 @@ public class crudAcervoMapas {
             
             acervoMapas.setMapalocal(mapalocal);
             acervoMapas.setMapaEdicao(mapaEdicao);
+            
             return true;
         } else {
             return false;
