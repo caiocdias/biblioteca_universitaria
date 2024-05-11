@@ -48,7 +48,7 @@ public class crudAcervo {
                 acervoAutores[i] = scan.nextLine();
             }
 
-            System.out.print("Entre com o CU: ");
+            System.out.print("Entre com o CDU: ");
             acervoCDU = scan.nextLine();
 
             scan = new Scanner(System.in);

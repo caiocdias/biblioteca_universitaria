@@ -5,7 +5,7 @@ package com.uemg.biblioteca_universitaria;
 
 import static com.uemg.biblioteca_universitaria.controller.boxString.boxString;
 import com.uemg.biblioteca_universitaria.model.classes.*;
-import com.uemg.biblioteca_universitaria.controller.*;
+import static com.uemg.biblioteca_universitaria.view.menuCadastrarAcervo.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +22,7 @@ public class Biblioteca_universitaria {
         Scanner scan = new Scanner(System.in);
 
         do {
-            System.out.print("\t\tBiblioteca Universitaria\n\n");
+            System.out.print("\n\t\tBiblioteca Universitaria\n\n");
             System.out.println("1- Cadastrar no Acervo");
             System.out.println("2- Pesquisar no Acervo");
             System.out.println("3- Remover do Acervo");
@@ -35,6 +35,7 @@ public class Biblioteca_universitaria {
             
             switch (op) {
                 case 1:
+                    menuCadastrarAcervo(listAcervo);
                     break;
                 case 2:
                     break;

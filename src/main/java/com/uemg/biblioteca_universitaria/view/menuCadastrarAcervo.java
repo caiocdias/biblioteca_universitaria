@@ -21,7 +21,7 @@ public class menuCadastrarAcervo {
         Scanner scan = new Scanner(System.in);
         
         do {            
-            System.out.print("\t\tMenu de Cadastro de Item no Acervo\n\n");
+            System.out.print("\n\t\tMenu de Cadastro de Item no Acervo\n\n");
             System.out.println("1- Cadastrar Academicos");
             System.out.println("2- Cadasrar Cartazes");
             System.out.println("3- Cadastrar Livros");
