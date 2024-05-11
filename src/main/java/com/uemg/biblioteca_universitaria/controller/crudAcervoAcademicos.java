@@ -10,7 +10,7 @@ import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
 import static com.uemg.biblioteca_universitaria.controller.boxString.boxString;
 import java.util.Scanner;
 
-public class crudAcercoAcademicos {
+public class crudAcervoAcademicos {
 
     public static boolean cadastrarAcervoAcademicos(acervoAcademicos acervoAcademicos) {
         if (cadastrarAcervo(acervoAcademicos)) {
