@@ -10,10 +10,6 @@ import com.uemg.biblioteca_universitaria.model.classes.acervoAcademicos;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
 import java.util.Scanner;
 
-/**
- *
- * @author caiocdias
- */
 public class crudAcercoAcademicos {
 
     public static boolean cadastrarAcervoAcademicos(acervoAcademicos acervoAcademicos) {
