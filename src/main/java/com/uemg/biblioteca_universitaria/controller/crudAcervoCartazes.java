@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.uemg.biblioteca_universitaria.controller;
+
 import com.uemg.biblioteca_universitaria.model.classes.acervoCartazes;
 import com.uemg.biblioteca_universitaria.model.enums.cartazesTipo;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
 import java.util.Scanner;
 
 public class crudAcervoCartazes {
+
     public static boolean cadastrarAcervoCartazes(acervoCartazes acervoCartazes) {
         if (cadastrarAcervo(acervoCartazes)) {
             Scanner scan = new Scanner(System.in);
