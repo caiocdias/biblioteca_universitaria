@@ -3,7 +3,7 @@
  */
 
 package com.uemg.biblioteca_universitaria;
-import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
+import static com.uemg.biblioteca_universitaria.controller.boxString.boxString;
 import com.uemg.biblioteca_universitaria.model.classes.*;
 
 /**

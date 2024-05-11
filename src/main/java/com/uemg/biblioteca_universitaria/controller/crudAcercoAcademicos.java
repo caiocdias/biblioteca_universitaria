@@ -7,7 +7,7 @@ package com.uemg.biblioteca_universitaria.controller;
 import com.uemg.biblioteca_universitaria.model.enums.academicosTipo;
 import com.uemg.biblioteca_universitaria.model.classes.acervoAcademicos;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
-import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
+import static com.uemg.biblioteca_universitaria.controller.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcercoAcademicos {

@@ -5,7 +5,7 @@
 package com.uemg.biblioteca_universitaria.controller;
 import static com.uemg.biblioteca_universitaria.controller.crudAcervo.*;
 import com.uemg.biblioteca_universitaria.model.classes.acervoLivros;
-import static com.uemg.biblioteca_universitaria.view.boxString.boxString;
+import static com.uemg.biblioteca_universitaria.controller.boxString.boxString;
 import java.util.Scanner;
 
 public class crudAcervoLivros {
