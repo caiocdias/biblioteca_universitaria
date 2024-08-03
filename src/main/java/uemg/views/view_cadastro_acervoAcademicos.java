@@ -32,7 +32,7 @@ public class view_cadastro_acervoAcademicos {
     private JComboBox comboTipo;
 
     public view_cadastro_acervoAcademicos() {
-        JFrame frame = new JFrame("Cadastro de Acervo academico");
+        JFrame frame = new JFrame("Cadastro de Acervo Acadêmicos");
         frame.setContentPane(panelCadastrar);
 
         configureMaskForCDU();

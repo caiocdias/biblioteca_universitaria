@@ -94,6 +94,30 @@ public class view_janela_principal {
                 new view_cadastro_acervoLivros();
             }
         });
+        cadastrarAcervoMapasItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_cadastro_acervoMapas();
+            }
+        });
+        cadastrarAcervoMidiasItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_cadastro_acervoMidias();
+            }
+        });
+        cadastrarAcervoPeriodicosItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_cadastro_acervoPeriodicos();
+            }
+        });
+        cadastrarAcervoRelatoriosItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_cadastro_acervoRelatorios();
+            }
+        });
     }
 
     public void enableCadastroMenuItems() {
