@@ -1,10 +1,10 @@
-package uemg.controllers;
+package uemg.singleton;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class MySqlConnectionSingleton {
-    private Connection conn;
+    private Connection connection;
     private static MySqlConnectionSingleton instance;
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -19,7 +19,7 @@ public class MySqlConnectionSingleton {
         String connect = URL + ":" + PORT + "/" + DATABASE + "?" + TIMEZONE;
         try {
             Class.forName(DRIVER);
-            conn = DriverManager.getConnection(connect, USER, PASS);
+            connection = DriverManager.getConnection(connect, USER, PASS);
             System.out.println("Conexão com o banco de dados estabeelecida com sucesso");
         } catch (Exception ex) {
             System.out.println("Erro ao conectar ao banco de dados");
@@ -27,14 +27,14 @@ public class MySqlConnectionSingleton {
         }
     }
 
-    public Connection getConn() {
-        return conn;
+    public Connection getConnection() {
+        return connection;
     }
 
     public static MySqlConnectionSingleton getInstance() {
         if(instance == null) {
             instance = new MySqlConnectionSingleton();
-        } else if(instance.getConn() == null) {
+        } else if(instance.getConnection() == null) {
             instance = new MySqlConnectionSingleton();
         }
         return instance;
