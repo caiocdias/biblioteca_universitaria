@@ -61,13 +61,13 @@ public class view_janela_principal {
         frame.setVisible(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+        //Menu Logar
         logarItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new view_login(view_janela_principal.this);
             }
         });
-
         sairItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,10 +75,23 @@ public class view_janela_principal {
             }
         });
 
+        //Menus de Cadastro
         cadastrarAcervoAcademicoItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new view_cadastro_acervoAcademicos();
+            }
+        });
+        cadastrarAcervoCartazesItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_cadastro_acervoCartazes();
+            }
+        });
+        cadastrarAcervoLivrosItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_cadastro_acervoLivros();
             }
         });
     }
