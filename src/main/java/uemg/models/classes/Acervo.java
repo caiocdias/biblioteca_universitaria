@@ -8,10 +8,10 @@ import java.util.Objects;
 public class Acervo {
 
     private int acervoId;
-    private String[] acervoAutores;
+    private String acervoAutores;
     private String acervoTitulo;
     private int acervoAno;
-    private String[] acervoPalavrasChave;
+    private String acervoPalavrasChave;
     private boolean acervoFlagEmprestado;
     private String acervoCDU;
     
@@ -19,7 +19,7 @@ public class Acervo {
     public int getAcervoId() {
         return acervoId;
     }
-    public String[] getAcervoAutores() {
+    public String getAcervoAutores() {
         return acervoAutores;
     }
     public String getAcervoTitulo() {
@@ -28,7 +28,7 @@ public class Acervo {
     public int getAcervoAno() {
         return acervoAno;
     }
-    public String[] getAcervoPalavrasChave() {
+    public String getAcervoPalavrasChave() {
         return acervoPalavrasChave;
     }
     public boolean isAcervoFlagEmprestado() {
@@ -42,7 +42,7 @@ public class Acervo {
     public void setAcervoId(int acervoId) {
         this.acervoId = acervoId;
     }
-    public void setAcervoAutores(String[] acervoAutores) {
+    public void setAcervoAutores(String acervoAutores) {
         this.acervoAutores = acervoAutores;
     }
     public void setAcervoTitulo(String acervoTitulo) {
@@ -51,7 +51,7 @@ public class Acervo {
     public void setAcervoAno(int acervoAno) {
         this.acervoAno = acervoAno;
     }
-    public void setAcervoPalavrasChave(String[] acervoPalavrasChave) {
+    public void setAcervoPalavrasChave(String acervoPalavrasChave) {
         this.acervoPalavrasChave = acervoPalavrasChave;
     }
     public void setAcervoFlagEmprestado(boolean acervoFlagEmprestado) {
@@ -64,7 +64,7 @@ public class Acervo {
     public Acervo() {
     }
 
-    public Acervo(int acervoId, String[] acervoAutores, String acervoTitulo, int acervoAno, String[] acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
+    public Acervo(int acervoId, String acervoAutores, String acervoTitulo, int acervoAno, String acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
         this.setAcervoId(acervoId);
         this.setAcervoAutores(acervoAutores);
         this.setAcervoTitulo(acervoTitulo);
@@ -73,18 +73,6 @@ public class Acervo {
         this.setAcervoFlagEmprestado(acervoFlagEmprestado);
         this.setAcervoCDU(acervoCDU);
     }
-
-    @Override
-    public String toString() {
-        String res = "";
-        for (String autor: acervoAutores) {
-            res += autor + ". ";
-        }
-        res += "\n\n";
-        res += acervoTitulo + " - " + acervoAno;
-        return res;
-    }
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -96,5 +84,4 @@ public class Acervo {
     public int hashCode() {
         return Objects.hash(acervoId);
     }
-
 }

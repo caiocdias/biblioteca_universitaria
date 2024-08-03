@@ -11,7 +11,7 @@ public class acervoMapas extends Acervo {
     public acervoMapas() {
     }
 
-    public acervoMapas(String mapalocal, int mapaEdicao, int acervoId, String[] acervoAutores, String acervoTitulo, int acervoAno, String[] acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
+    public acervoMapas(String mapalocal, int mapaEdicao, int acervoId, String acervoAutores, String acervoTitulo, int acervoAno, String acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
         super(acervoId, acervoAutores, acervoTitulo, acervoAno, acervoPalavrasChave, acervoFlagEmprestado, acervoCDU);
         this.setMapalocal(mapalocal);
         this.setMapaEdicao(mapaEdicao);
@@ -32,33 +32,5 @@ public class acervoMapas extends Acervo {
 
     public void setMapaEdicao(int mapaEdicao) {
         this.mapaEdicao = mapaEdicao;
-    }
-    
-    @Override
-    public String toString() {
-        String res = ""; 
-        for (String autor: super.getAcervoAutores()) {
-            res += autor + ". ";
-        }
-        
-        res += super.getAcervoId() + ".";
-        res += "\n\n";
-        res += super.getAcervoTitulo() + " - " + this.getMapalocal() + " - " + this.getMapaEdicao() + " - " + super.getAcervoAno();
-        
-        res += "\n\n";
-        for (String palavra: super.getAcervoPalavrasChave()) {
-            res += palavra + ". ";
-        }
-        
-        res += "\n\n";
-        if (super.isAcervoFlagEmprestado()) {
-            res += "Emprestado";
-        } else {
-            res += "Disponivel";
-        }
-        
-        res += "           CDU: " + super.getAcervoCDU();
-        
-        return res;
     }
 }

@@ -14,7 +14,7 @@ public class acervoMidias extends Acervo {
     public acervoMidias() {
     }
 
-    public acervoMidias(midiaTipo midiaTipo, String midiaProdutora, String midiaISMN, int acervoId, String[] acervoAutores, String acervoTitulo, int acervoAno, String[] acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
+    public acervoMidias(midiaTipo midiaTipo, String midiaProdutora, String midiaISMN, int acervoId, String acervoAutores, String acervoTitulo, int acervoAno, String acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
         super(acervoId, acervoAutores, acervoTitulo, acervoAno, acervoPalavrasChave, acervoFlagEmprestado, acervoCDU);
         this.setMidiaTipo(midiaTipo);
         this.setMidiaProdutora(midiaProdutora);
@@ -42,36 +42,4 @@ public class acervoMidias extends Acervo {
     public void setMidiaISMN(String midiaISMN) {
         this.midiaISMN = midiaISMN;
     }
-
-    @Override
-    public String toString() {
-        String res = ""; 
-        for (String autor: super.getAcervoAutores()) {
-            res += autor + ". ";
-        }
-        
-        res += super.getAcervoId() + ".";
-        res += "\n\n";
-        res += super.getAcervoTitulo() + " - " + this.getMidiaTipo() + " - " + this.getMidiaProdutora() + " - " + super.getAcervoAno();
-        res += "\n\n";
-        
-        res += this.getMidiaISMN();
-        
-        res += "\n\n";
-        for (String palavra: super.getAcervoPalavrasChave()) {
-            res += palavra + ". ";
-        }
-        
-        res += "\n\n";
-        if (super.isAcervoFlagEmprestado()) {
-            res += "Emprestado";
-        } else {
-            res += "Disponivel";
-        }
-        
-        res += "           CDU: " + super.getAcervoCDU();
-        
-        return res;
-    }
-    
 }

@@ -17,7 +17,7 @@ public class acervoPeriodicos extends Acervo {
     public acervoPeriodicos() {
     }
 
-    public acervoPeriodicos(int periodicosQtdPaginas, periodicosTipo periodicosTipo, int periodicosEdicao, String periodicosEditora, String periodicosCidade, String periodicosISBN, int acervoId, String[] acervoAutores, String acervoTitulo, int acervoAno, String[] acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
+    public acervoPeriodicos(int periodicosQtdPaginas, periodicosTipo periodicosTipo, int periodicosEdicao, String periodicosEditora, String periodicosCidade, String periodicosISBN, int acervoId, String acervoAutores, String acervoTitulo, int acervoAno, String acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
         super(acervoId, acervoAutores, acervoTitulo, acervoAno, acervoPalavrasChave, acervoFlagEmprestado, acervoCDU);
         this.setPeriodicosQtdPaginas(periodicosQtdPaginas);
         this.setPeriodicosTipo(periodicosTipo);
@@ -66,40 +66,4 @@ public class acervoPeriodicos extends Acervo {
     public void setPeriodicosISBN(String periodicosISBN) {
         this.periodicosISBN = periodicosISBN;
     }
-    
-    @Override
-    public String toString() {
-        String res = ""; 
-        for (String autor: super.getAcervoAutores()) {
-            res += autor + ". ";
-        }
-        
-        res += super.getAcervoId() + ".";
-        res += "\n\n";
-        res += super.getAcervoTitulo() + " - " + this.getPeriodicosTipo() + " - " + this.getPeriodicosEdicao() + " - " + this.getPeriodicosEditora() + " - " + this.getPeriodicosCidade() + " - " + super.getAcervoAno() + ".";
-        res += "\n";
-        
-        res += this.getPeriodicosQtdPaginas();
-        
-        res += "\n\n";
-        
-        res += this.getPeriodicosISBN();
-        
-        res += "\n\n";
-        for (String palavra: super.getAcervoPalavrasChave()) {
-            res += palavra + ". ";
-        }
-        
-        res += "\n\n";
-        if (super.isAcervoFlagEmprestado()) {
-            res += "Emprestado";
-        } else {
-            res += "Disponivel";
-        }
-        
-        res += "           CDU: " + super.getAcervoCDU();
-        
-        return res;
-    }
-    
 }

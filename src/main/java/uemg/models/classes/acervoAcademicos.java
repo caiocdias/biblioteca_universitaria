@@ -16,7 +16,7 @@ public class acervoAcademicos extends Acervo {
     public acervoAcademicos() {
     }
 
-    public acervoAcademicos(int academicosQtdPaginas, academicosTipo academicosTipo, String academicosEditora, String academicosCidade, String academicosDOI, int acervoId, String[] acervoAutores, String acervoTitulo, int acervoAno, String[] acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
+    public acervoAcademicos(int academicosQtdPaginas, academicosTipo academicosTipo, String academicosEditora, String academicosCidade, String academicosDOI, int acervoId, String acervoAutores, String acervoTitulo, int acervoAno, String acervoPalavrasChave, boolean acervoFlagEmprestado, String acervoCDU) {
         super(acervoId, acervoAutores, acervoTitulo, acervoAno, acervoPalavrasChave, acervoFlagEmprestado, acervoCDU);
         this.setAcademicosQtdPaginas(academicosQtdPaginas);
         this.setAcademicosTipo(academicosTipo);
@@ -58,40 +58,4 @@ public class acervoAcademicos extends Acervo {
     public void setAcademicosDOI(String academicosDOI) {
         this.academicosDOI = academicosDOI;
     }
-    
-    @Override
-    public String toString() {
-        String res = ""; 
-        for (String autor: super.getAcervoAutores()) {
-            res += autor + ". ";
-        }
-        
-        res += super.getAcervoId() + ".";
-        res += "\n\n";
-        res += super.getAcervoTitulo() + " - " + this.getAcademicosEditora() + " - " + this.getAcademicosCidade() + " - " + super.getAcervoAno();
-        res += "\n";
-        
-        res += this.getAcademicosQtdPaginas();
-        
-        res += "\n\n";
-        
-        res += this.getAcademicosDOI();
-        
-        res += "\n\n";
-        for (String palavra: super.getAcervoPalavrasChave()) {
-            res += palavra + ". ";
-        }
-        
-        res += "\n\n";
-        if (super.isAcervoFlagEmprestado()) {
-            res += "Emprestado";
-        } else {
-            res += "Disponivel";
-        }
-        
-        res += "           CDU: " + super.getAcervoCDU();
-        
-        return res;
-    }
-
 }
