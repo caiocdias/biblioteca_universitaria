@@ -1,5 +1,7 @@
 package uemg.views;
 
+import uemg.views.views_cadastro.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

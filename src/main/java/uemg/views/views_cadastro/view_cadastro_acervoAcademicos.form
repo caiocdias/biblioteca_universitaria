@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="uemg.views.view_cadastro_acervoAcademicos">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="uemg.views.views_cadastro.view_cadastro_acervoAcademicos">
   <grid id="27dc6" binding="panelCadastrar" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>

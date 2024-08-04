@@ -1,4 +1,6 @@
-package uemg.views;
+package uemg.views.views_cadastro;
+
+import uemg.models.enums.midiaTipo;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -7,7 +9,7 @@ import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.text.ParseException;
 
-public class view_cadastro_acervoMapas {
+public class view_cadastro_acervoMidias {
     private JPanel panelCadastrar;
     private JLabel lblAutor;
     private JTextField txtAutor;
@@ -20,17 +22,20 @@ public class view_cadastro_acervoMapas {
     private JTextField txtPChave;
     private JFormattedTextField txtCDU;
     private JButton btnCadastrar;
-    private JLabel lblLocal;
-    private JTextField txtCidade;
-    private JLabel lblEdicao;
-    private JTextField txtEdicao;
+    private JLabel lblProdutora;
+    private JLabel lblISMN;
+    private JTextField txtProdutora;
+    private JFormattedTextField txtISMN;
+    private JLabel lblTipo;
+    private JComboBox comboTipo;
 
-    public view_cadastro_acervoMapas() {
-        JFrame frame = new JFrame("Cadastro de Acervo Mapas");
+    public view_cadastro_acervoMidias() {
+        JFrame frame = new JFrame("Cadastro de Acervo Midias");
         frame.setContentPane(panelCadastrar);
 
         configureMaskForCDU();
-
+        configureMaskForISMN();
+        initializeComboBox();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
 
@@ -41,11 +46,27 @@ public class view_cadastro_acervoMapas {
         frame.setLocation(500, 300);
     }
 
+    private void initializeComboBox() {
+        for (midiaTipo tipo : midiaTipo.values()) {
+            comboTipo.addItem(tipo);
+        }
+    }
+
     private void configureMaskForCDU() {
         try {
             MaskFormatter maskFormatter = new MaskFormatter("###.##:###.##");
             maskFormatter.setPlaceholderCharacter('_');
             txtCDU.setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void configureMaskForISMN() {
+        try {
+            MaskFormatter maskFormatter = new MaskFormatter("###-#-####-####-#");
+            maskFormatter.setPlaceholderCharacter('_');
+            txtISMN.setFormatterFactory(new DefaultFormatterFactory(maskFormatter));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -109,19 +130,23 @@ public class view_cadastro_acervoMapas {
         btnCadastrar.setText("Cadastrar");
         panelCadastrar.add(btnCadastrar, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 4, new Insets(3, 3, 3, 3), -1, -1));
+        panel4.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 4, new Insets(3, 3, 3, 3), -1, -1));
         panelCadastrar.add(panel4, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         panel4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(-16777216)), null, TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, new Color(-16777216)));
-        lblLocal = new JLabel();
-        lblLocal.setText("Local:");
-        panel4.add(lblLocal, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        txtCidade = new JTextField();
-        txtCidade.setText("");
-        panel4.add(txtCidade, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        lblEdicao = new JLabel();
-        lblEdicao.setText("Edição:");
-        panel4.add(lblEdicao, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        txtEdicao = new JTextField();
-        panel4.add(txtEdicao, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        lblProdutora = new JLabel();
+        lblProdutora.setText("Produtora:");
+        panel4.add(lblProdutora, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        lblISMN = new JLabel();
+        lblISMN.setText("ISMN:");
+        panel4.add(lblISMN, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txtProdutora = new JTextField();
+        panel4.add(txtProdutora, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        txtISMN = new JFormattedTextField();
+        panel4.add(txtISMN, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        lblTipo = new JLabel();
+        lblTipo.setText("Tipo:");
+        panel4.add(lblTipo, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        comboTipo = new JComboBox();
+        panel4.add(comboTipo, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 }

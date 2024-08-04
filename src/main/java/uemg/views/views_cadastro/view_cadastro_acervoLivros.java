@@ -1,6 +1,4 @@
-package uemg.views;
-
-import uemg.models.enums.academicosTipo;
+package uemg.views.views_cadastro;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

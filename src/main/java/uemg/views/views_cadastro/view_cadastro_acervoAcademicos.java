@@ -1,4 +1,4 @@
-package uemg.views;
+package uemg.views.views_cadastro;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
