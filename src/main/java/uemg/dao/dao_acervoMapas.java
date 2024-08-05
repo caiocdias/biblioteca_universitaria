@@ -63,12 +63,62 @@ public class dao_acervoMapas {
     }
 
     public static boolean alterarAcervoMapasDB(acervoMapas acervoMapas) {
-        return true;
+        Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
+        boolean flag = false;
+
+        try {
+            connection.setAutoCommit(false);
+
+            // Atualizar TB_ACERVO
+            String updateAcervoSQL =
+                    "UPDATE TB_ACERVO SET TITULO = ?, ANO = ?, FLAG_EMPRESTADO = ?, CDU = ?, PALAVRA_CHAVE = ?, AUTOR = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement acervoStatement = connection.prepareStatement(updateAcervoSQL)) {
+                acervoStatement.setString(1, acervoMapas.getAcervoTitulo());
+                acervoStatement.setInt(2, acervoMapas.getAcervoAno());
+                acervoStatement.setBoolean(3, acervoMapas.isAcervoFlagEmprestado());
+                acervoStatement.setString(4, acervoMapas.getAcervoCDU());
+                acervoStatement.setString(5, acervoMapas.getAcervoPalavrasChave());
+                acervoStatement.setString(6, acervoMapas.getAcervoAutores());
+                acervoStatement.setInt(7, acervoMapas.getAcervoId());
+                acervoStatement.executeUpdate();
+            }
+
+            // Atualizar TB_ACERVO_MAPAS
+            String updateMapasSQL =
+                    "UPDATE TB_ACERVO_MAPAS SET LOCALIZACAO = ?, EDICAO = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement mapasStatement = connection.prepareStatement(updateMapasSQL)) {
+                mapasStatement.setString(1, acervoMapas.getMapalocal());
+                mapasStatement.setInt(2, acervoMapas.getMapaEdicao());
+                mapasStatement.setInt(3, acervoMapas.getAcervoId());
+                mapasStatement.executeUpdate();
+            }
+
+            connection.commit();
+            flag = true;
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return flag;
     }
 
     public static boolean excluirAcervoMapasDB(acervoMapas acervoMapas) {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
-        boolean success = false;
+        boolean flag = false;
 
         try {
             connection.setAutoCommit(false);
@@ -78,7 +128,7 @@ public class dao_acervoMapas {
                 acervoStatement.setString(1, acervoMapas.getAcervoCDU());
                 int affectedRows = acervoStatement.executeUpdate();
                 if (affectedRows > 0) {
-                    success = true;
+                    flag = true;
                 }
             }
 
@@ -101,12 +151,12 @@ public class dao_acervoMapas {
                 }
             }
         }
-        return success;
+        return flag;
     }
 
     public static boolean getAllAcervoMapasDB(ArrayList<Acervo> listAcervo) {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
-        boolean success = false;
+        boolean flag = false;
 
         String selectFromAcervoSQL =
                 "SELECT * FROM TB_ACERVO INNER JOIN TB_ACERVO_MAPAS tam ON TB_ACERVO.ACERVO_ID = tam.ACERVO_ID";
@@ -131,12 +181,12 @@ public class dao_acervoMapas {
                 acervoMapas acervoMapa = new acervoMapas(mapalocal, mapaEdicao, acervoId, acervoAutores, acervoTitulo, acervoAno, acervoPalavrasChave, acervoFlagEmprestado, acervoCDU);
                 listAcervo.add(acervoMapa);
             }
-            success = true;
+            flag = true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return success;
+        return flag;
     }
 
 }

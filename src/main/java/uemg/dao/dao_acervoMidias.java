@@ -65,7 +65,58 @@ public class dao_acervoMidias {
     }
 
     public static boolean alterarAcervoMidiasDB(acervoMidias acervoMidia) {
-        return true;
+        Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
+        boolean flag = false;
+
+        try {
+            connection.setAutoCommit(false);
+
+            // Atualizar TB_ACERVO
+            String updateAcervoSQL =
+                    "UPDATE TB_ACERVO SET TITULO = ?, ANO = ?, FLAG_EMPRESTADO = ?, CDU = ?, PALAVRA_CHAVE = ?, AUTOR = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement acervoStatement = connection.prepareStatement(updateAcervoSQL)) {
+                acervoStatement.setString(1, acervoMidia.getAcervoTitulo());
+                acervoStatement.setInt(2, acervoMidia.getAcervoAno());
+                acervoStatement.setBoolean(3, acervoMidia.isAcervoFlagEmprestado());
+                acervoStatement.setString(4, acervoMidia.getAcervoCDU());
+                acervoStatement.setString(5, acervoMidia.getAcervoPalavrasChave());
+                acervoStatement.setString(6, acervoMidia.getAcervoAutores());
+                acervoStatement.setInt(7, acervoMidia.getAcervoId());
+                acervoStatement.executeUpdate();
+            }
+
+            // Atualizar TB_ACERVO_MIDIAS
+            String updateMidiasSQL =
+                    "UPDATE TB_ACERVO_MIDIAS SET TIPO = ?, PRODUTORA = ?, ISMN = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement midiasStatement = connection.prepareStatement(updateMidiasSQL)) {
+                midiasStatement.setString(1, acervoMidia.getMidiaTipo().toString());
+                midiasStatement.setString(2, acervoMidia.getMidiaProdutora());
+                midiasStatement.setString(3, acervoMidia.getMidiaISMN());
+                midiasStatement.setInt(4, acervoMidia.getAcervoId());
+                midiasStatement.executeUpdate();
+            }
+
+            connection.commit();
+            flag = true;
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return flag;
     }
 
     public static boolean excluirAcervoMidiasDB(acervoMidias acervoMidia) {

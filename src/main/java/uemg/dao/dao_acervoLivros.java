@@ -66,12 +66,65 @@ public class dao_acervoLivros {
     }
 
     public static boolean alterarAcervoLivros(acervoLivros acervoLivro) {
-        return true;
+        Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
+        boolean flag = false;
+
+        try {
+            connection.setAutoCommit(false);
+
+            // Atualizar TB_ACERVO
+            String updateAcervoSQL =
+                    "UPDATE TB_ACERVO SET TITULO = ?, ANO = ?, FLAG_EMPRESTADO = ?, CDU = ?, PALAVRA_CHAVE = ?, AUTOR = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement acervoStatement = connection.prepareStatement(updateAcervoSQL)) {
+                acervoStatement.setString(1, acervoLivro.getAcervoTitulo());
+                acervoStatement.setInt(2, acervoLivro.getAcervoAno());
+                acervoStatement.setBoolean(3, acervoLivro.isAcervoFlagEmprestado());
+                acervoStatement.setString(4, acervoLivro.getAcervoCDU());
+                acervoStatement.setString(5, acervoLivro.getAcervoPalavrasChave());
+                acervoStatement.setString(6, acervoLivro.getAcervoAutores());
+                acervoStatement.setInt(7, acervoLivro.getAcervoId());
+                acervoStatement.executeUpdate();
+            }
+
+            // Atualizar TB_ACERVO_LIVROS
+            String updateLivrosSQL =
+                    "UPDATE TB_ACERVO_LIVROS SET QTD_PAGINAS = ?, EDICAO = ?, EDITORA = ?, CIDADE = ?, ISBN = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement livrosStatement = connection.prepareStatement(updateLivrosSQL)) {
+                livrosStatement.setInt(1, acervoLivro.getLivrosQtdPaginas());
+                livrosStatement.setInt(2, acervoLivro.getLivrosEdicao());
+                livrosStatement.setString(3, acervoLivro.getLivrosEditora());
+                livrosStatement.setString(4, acervoLivro.getLivrosCidade());
+                livrosStatement.setString(5, acervoLivro.getLivrosISBN());
+                livrosStatement.setInt(6, acervoLivro.getAcervoId());
+                livrosStatement.executeUpdate();
+            }
+
+            connection.commit();
+            flag = true;
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return flag;
     }
 
     public static boolean excluirAcervoLivros(acervoLivros acervoLivro) {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
-        boolean success = false;
+        boolean flag = false;
 
         try {
             connection.setAutoCommit(false);
@@ -81,7 +134,7 @@ public class dao_acervoLivros {
                 acervoStatement.setString(1, acervoLivro.getAcervoCDU());
                 int affectedRows = acervoStatement.executeUpdate();
                 if (affectedRows > 0) {
-                    success = true;
+                    flag = true;
                 }
             }
 
@@ -104,12 +157,12 @@ public class dao_acervoLivros {
                 }
             }
         }
-        return success;
+        return flag;
     }
 
     public static boolean getAllAcervoLivros(ArrayList<Acervo> listAcervo) {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
-        boolean success = false;
+        boolean flag = false;
 
         String selectFromAcervoSQL =
                 "SELECT * FROM TB_ACERVO INNER JOIN TB_ACERVO_LIVROS TAL ON TB_ACERVO.ACERVO_ID = TAL.ACERVO_ID";
@@ -137,11 +190,11 @@ public class dao_acervoLivros {
                 acervoLivros acervoLivro = new acervoLivros(livrosQtdPaginas, livrosEdicao, livrosEditora, livrosCidade, livrosISBN, acervoId, acervoAutores, acervoTitulo, acervoAno, acervoPalavrasChave, acervoFlagEmprestado, acervoCDU);
                 listAcervo.add(acervoLivro);
             }
-            success = true;
+            flag = true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return success;
+        return flag;
     }
 }

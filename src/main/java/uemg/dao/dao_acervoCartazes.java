@@ -62,12 +62,61 @@ public class dao_acervoCartazes {
     }
 
     public static boolean alterarAcervoCartazesDB(acervoCartazes acervoCartazes) {
-        return true;
+        Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
+        boolean flag = false;
+
+        try {
+            connection.setAutoCommit(false);
+
+            // Atualizar TB_ACERVO
+            String updateAcervoSQL =
+                    "UPDATE TB_ACERVO SET TITULO = ?, ANO = ?, FLAG_EMPRESTADO = ?, CDU = ?, PALAVRA_CHAVE = ?, AUTOR = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement acervoStatement = connection.prepareStatement(updateAcervoSQL)) {
+                acervoStatement.setString(1, acervoCartazes.getAcervoTitulo());
+                acervoStatement.setInt(2, acervoCartazes.getAcervoAno());
+                acervoStatement.setBoolean(3, acervoCartazes.isAcervoFlagEmprestado());
+                acervoStatement.setString(4, acervoCartazes.getAcervoCDU());
+                acervoStatement.setString(5, acervoCartazes.getAcervoPalavrasChave());
+                acervoStatement.setString(6, acervoCartazes.getAcervoAutores());
+                acervoStatement.setInt(7, acervoCartazes.getAcervoId());
+                acervoStatement.executeUpdate();
+            }
+
+            // Atualizar TB_ACERVO_CARTAZES
+            String updateCartazesSQL =
+                    "UPDATE TB_ACERVO_CARTAZES SET TIPO = ? WHERE ACERVO_ID = ?";
+            try (PreparedStatement cartazesStatement = connection.prepareStatement(updateCartazesSQL)) {
+                cartazesStatement.setString(1, acervoCartazes.getCartazesTipo().toString());
+                cartazesStatement.setInt(2, acervoCartazes.getAcervoId());
+                cartazesStatement.executeUpdate();
+            }
+
+            connection.commit();
+            flag = true;
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return flag;
     }
 
     public static boolean excluirAcervoCartazesDB(acervoCartazes acervoCartazes) {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
-        boolean success = false;
+        boolean flag = false;
 
         try {
             connection.setAutoCommit(false);
@@ -76,7 +125,7 @@ public class dao_acervoCartazes {
                 acervoStatement.setString(1, acervoCartazes.getAcervoCDU());
                 int affectedRows = acervoStatement.executeUpdate();
                 if (affectedRows > 0) {
-                    success = true;
+                    flag = true;
                 }
             }
             connection.commit();
@@ -99,12 +148,12 @@ public class dao_acervoCartazes {
                 }
             }
         }
-        return success;
+        return flag;
     }
 
     public static boolean getAllAcervoCartazesDB(ArrayList<Acervo> listAcervo) {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
-        boolean success = false;
+        boolean flag = false;
 
         String selectFromAcervoSQL =
                 "SELECT * FROM TB_ACERVO INNER JOIN TB_ACERVO_CARTAZES tac ON TB_ACERVO.ACERVO_ID = tac.ACERVO_ID";
@@ -153,11 +202,11 @@ public class dao_acervoCartazes {
                 );
                 listAcervo.add(acervoCartazes);
             }
-            success = true;
+            flag = true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return success;
+        return flag;
     }
 }
