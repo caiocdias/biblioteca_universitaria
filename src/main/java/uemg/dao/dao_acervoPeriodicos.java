@@ -132,9 +132,9 @@ public class dao_acervoPeriodicos {
         try {
             connection.setAutoCommit(false);
 
-            String deleteFromAcervoSQL = "DELETE FROM TB_ACERVO WHERE CDU = ?";
+            String deleteFromAcervoSQL = "DELETE FROM TB_ACERVO WHERE ACERVO_ID = ?";
             try (PreparedStatement acervoStatement = connection.prepareStatement(deleteFromAcervoSQL)) {
-                acervoStatement.setString(1, acervoPeriodicos.getAcervoCDU());
+                acervoStatement.setInt(1, acervoPeriodicos.getAcervoId());
                 int affectedRows = acervoStatement.executeUpdate();
                 if (affectedRows > 0) {
                     flag = true;

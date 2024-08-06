@@ -123,9 +123,9 @@ public class dao_acervoMapas {
         try {
             connection.setAutoCommit(false);
 
-            String deleteFromAcervoSQL = "DELETE FROM TB_ACERVO WHERE CDU = ?";
+            String deleteFromAcervoSQL = "DELETE FROM TB_ACERVO WHERE ACERVO_ID = ?";
             try (PreparedStatement acervoStatement = connection.prepareStatement(deleteFromAcervoSQL)) {
-                acervoStatement.setString(1, acervoMapas.getAcervoCDU());
+                acervoStatement.setInt(1, acervoMapas.getAcervoId());
                 int affectedRows = acervoStatement.executeUpdate();
                 if (affectedRows > 0) {
                     flag = true;

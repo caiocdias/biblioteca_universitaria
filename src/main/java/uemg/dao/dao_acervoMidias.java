@@ -126,9 +126,9 @@ public class dao_acervoMidias {
         try {
             connection.setAutoCommit(false);
 
-            String deleteFromAcervoSQL = "DELETE FROM TB_ACERVO WHERE CDU = ?";
+            String deleteFromAcervoSQL = "DELETE FROM TB_ACERVO WHERE ACERVO_ID = ?";
             try (PreparedStatement acervoStatement = connection.prepareStatement(deleteFromAcervoSQL)) {
-                acervoStatement.setString(1, acervoMidia.getAcervoCDU());
+                acervoStatement.setInt(1, acervoMidia.getAcervoId());
                 int affectedRows = acervoStatement.executeUpdate();
                 if (affectedRows > 0) {
                     success = true;
