@@ -94,7 +94,7 @@ public class view_cadastro_acervoAcademicos {
             @Override
             public void actionPerformed(ActionEvent e) {
                 control_acervoAcademico control = new control_acervoAcademico(view_cadastro_acervoAcademicos.this);
-                control.cadastrarAcervo();
+                control.cadastrarAcervoAcademicos();
                 frame.dispose();
             }
         });
