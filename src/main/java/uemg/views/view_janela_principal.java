@@ -1,6 +1,7 @@
 package uemg.views;
 
 import uemg.views.views_cadastro.*;
+import uemg.views.views_visualizar.view_visualizar_acervoAcademicos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,14 @@ public class view_janela_principal {
     private final JMenuItem cadastrarAcervoPeriodicosItem;
     private final JMenuItem cadastrarAcervoRelatoriosItem;
 
+    private final JMenuItem visualizarAcervoAcademicoItem;
+    private final JMenuItem visualizarAcervoCartazesItem;
+    private final JMenuItem visualizarAcervoLivrosItem;
+    private final JMenuItem visualizarAcervoMapasItem;
+    private final JMenuItem visualizarAcervoMidiasItem;
+    private final JMenuItem visualizarAcervoPeriodicosItem;
+    private final JMenuItem visualizarAcervoRelatoriosItem;
+
     public view_janela_principal() {
         JFrame frame = new JFrame("Biblioteca Universitária");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +35,7 @@ public class view_janela_principal {
         JMenuBar menuBar = new JMenuBar();
         JMenu loginMenu = new JMenu("Login");
         JMenu cadastroMenu = new JMenu("Cadastro");
-
+        JMenu visualizarMenu = new JMenu("Visualizar");
         JMenuItem logarItem = new JMenuItem("Logar");
         JMenuItem sairItem = new JMenuItem("Sair");
 
@@ -38,8 +47,15 @@ public class view_janela_principal {
         cadastrarAcervoPeriodicosItem = new JMenuItem("Acervo de Periódicos");
         cadastrarAcervoRelatoriosItem = new JMenuItem("Acervo de Relatórios");
 
-        loginMenu.add(logarItem);
-        loginMenu.add(sairItem);
+        visualizarAcervoAcademicoItem = new JMenuItem("Acervo Acadêmico");
+        visualizarAcervoCartazesItem = new JMenuItem("Acervo de Cartazes");
+        visualizarAcervoLivrosItem = new JMenuItem("Acervo de Livros");
+        visualizarAcervoMapasItem = new JMenuItem("Acervo de Mapas");
+        visualizarAcervoMidiasItem = new JMenuItem("Acervo de Mídias");
+        visualizarAcervoPeriodicosItem = new JMenuItem("Acervo de Periódicos");
+        visualizarAcervoRelatoriosItem = new JMenuItem("Acervo de Relatórios");
+
+
 
         cadastroMenu.add(cadastrarAcervoAcademicoItem);
         cadastroMenu.add(cadastrarAcervoCartazesItem);
@@ -49,10 +65,23 @@ public class view_janela_principal {
         cadastroMenu.add(cadastrarAcervoPeriodicosItem);
         cadastroMenu.add(cadastrarAcervoRelatoriosItem);
 
-        disableCadastroMenuItems();
+        visualizarMenu.add(visualizarAcervoAcademicoItem);
+        visualizarMenu.add(visualizarAcervoCartazesItem);
+        visualizarMenu.add(visualizarAcervoLivrosItem);
+        visualizarMenu.add(visualizarAcervoMapasItem);
+        visualizarMenu.add(visualizarAcervoMidiasItem);
+        visualizarMenu.add(visualizarAcervoPeriodicosItem);
+        visualizarMenu.add(visualizarAcervoRelatoriosItem);
+
+        loginMenu.add(logarItem);
+        loginMenu.add(sairItem);
+
+        disableMenuItems();
 
         menuBar.add(loginMenu);
         menuBar.add(cadastroMenu);
+        menuBar.add(visualizarMenu);
+
         frame.setJMenuBar(menuBar);
 
         panelMain = new JPanel();
@@ -120,9 +149,17 @@ public class view_janela_principal {
                 new view_cadastro_acervoRelatorios();
             }
         });
+
+        //Menus de visualização
+        visualizarAcervoAcademicoItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoAcademicos();
+            }
+        });
     }
 
-    public void enableCadastroMenuItems() {
+    public void enableMenuItems() {
         cadastrarAcervoAcademicoItem.setEnabled(true);
         cadastrarAcervoCartazesItem.setEnabled(true);
         cadastrarAcervoLivrosItem.setEnabled(true);
@@ -130,9 +167,17 @@ public class view_janela_principal {
         cadastrarAcervoMidiasItem.setEnabled(true);
         cadastrarAcervoPeriodicosItem.setEnabled(true);
         cadastrarAcervoRelatoriosItem.setEnabled(true);
+
+        visualizarAcervoAcademicoItem.setEnabled(true);
+        visualizarAcervoCartazesItem.setEnabled(true);
+        visualizarAcervoLivrosItem.setEnabled(true);
+        visualizarAcervoMapasItem.setEnabled(true);
+        visualizarAcervoMidiasItem.setEnabled(true);
+        visualizarAcervoPeriodicosItem.setEnabled(true);
+        visualizarAcervoRelatoriosItem.setEnabled(true);
     }
 
-    public void disableCadastroMenuItems() {
+    public void disableMenuItems() {
         cadastrarAcervoAcademicoItem.setEnabled(false);
         cadastrarAcervoCartazesItem.setEnabled(false);
         cadastrarAcervoLivrosItem.setEnabled(false);
@@ -140,6 +185,14 @@ public class view_janela_principal {
         cadastrarAcervoMidiasItem.setEnabled(false);
         cadastrarAcervoPeriodicosItem.setEnabled(false);
         cadastrarAcervoRelatoriosItem.setEnabled(false);
+
+        visualizarAcervoAcademicoItem.setEnabled(false);
+        visualizarAcervoCartazesItem.setEnabled(false);
+        visualizarAcervoLivrosItem.setEnabled(false);
+        visualizarAcervoMapasItem.setEnabled(false);
+        visualizarAcervoMidiasItem.setEnabled(false);
+        visualizarAcervoPeriodicosItem.setEnabled(false);
+        visualizarAcervoRelatoriosItem.setEnabled(false);
     }
 
     public static void main(String[] args) {

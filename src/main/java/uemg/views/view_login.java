@@ -22,7 +22,7 @@ public class view_login {
     private void logar() {
         if (txtUser.getText().equals(USER) && new String(pwdUser.getPassword()).equals(PASS)) {
             JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
-            mainView.enableCadastroMenuItems();
+            mainView.enableMenuItems();
             frame.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
