@@ -1,5 +1,6 @@
 package uemg.views.views_cadastro;
 
+import uemg.controllers.control_acervoMidias;
 import uemg.models.enums.midiaTipo;
 
 import javax.swing.*;
@@ -7,14 +8,16 @@ import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 public class view_cadastro_acervoMidias {
     private JPanel panelCadastrar;
     private JLabel lblAutor;
     private JTextField txtAutor;
-    private JLabel txtTitulo;
-    private JTextField textField1;
+    private JLabel lblTitulo;
+    private JTextField txtTitulo;
     private JLabel lblAno;
     private JTextField txtAno;
     private JLabel lblCDU;
@@ -28,6 +31,38 @@ public class view_cadastro_acervoMidias {
     private JFormattedTextField txtISMN;
     private JLabel lblTipo;
     private JComboBox comboTipo;
+
+    public JTextField getTxtAutor() {
+        return txtAutor;
+    }
+
+    public JTextField getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public JTextField getTxtAno() {
+        return txtAno;
+    }
+
+    public JTextField getTxtPChave() {
+        return txtPChave;
+    }
+
+    public JFormattedTextField getTxtCDU() {
+        return txtCDU;
+    }
+
+    public JTextField getTxtProdutora() {
+        return txtProdutora;
+    }
+
+    public JFormattedTextField getTxtISMN() {
+        return txtISMN;
+    }
+
+    public JComboBox getComboTipo() {
+        return comboTipo;
+    }
 
     public view_cadastro_acervoMidias() {
         JFrame frame = new JFrame("Cadastro de Acervo Midias");
@@ -44,6 +79,15 @@ public class view_cadastro_acervoMidias {
 
         frame.setSize(800, 400);
         frame.setLocation(500, 300);
+
+        btnCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control_acervoMidias control = new control_acervoMidias(view_cadastro_acervoMidias.this);
+                control.cadastrarAcervoMidias();
+                frame.dispose();
+            }
+        });
     }
 
     private void initializeComboBox() {
@@ -104,11 +148,11 @@ public class view_cadastro_acervoMidias {
         panel3.add(lblAutor, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         txtAutor = new JTextField();
         panel3.add(txtAutor, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(75, -1), null, 0, false));
-        txtTitulo = new JLabel();
-        txtTitulo.setText("Título:");
-        panel3.add(txtTitulo, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        textField1 = new JTextField();
-        panel3.add(textField1, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        lblTitulo = new JLabel();
+        lblTitulo.setText("Título:");
+        panel3.add(lblTitulo, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        txtTitulo = new JTextField();
+        panel3.add(txtTitulo, new com.intellij.uiDesigner.core.GridConstraints(1, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         lblAno = new JLabel();
         lblAno.setText("Ano:");
         panel3.add(lblAno, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_EAST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
