@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class dao_acervoCartazes {
-    public static boolean inserirAcervoCartazesDB(acervoCartazes acervoCartazes) {
+    public static boolean inserirAcervoCartazesDB(acervoCartazes acervoCartazes) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -61,7 +61,7 @@ public class dao_acervoCartazes {
         return flag;
     }
 
-    public static boolean alterarAcervoCartazesDB(acervoCartazes acervoCartazes) {
+    public static boolean alterarAcervoCartazesDB(acervoCartazes acervoCartazes) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -114,7 +114,7 @@ public class dao_acervoCartazes {
         return flag;
     }
 
-    public static boolean excluirAcervoCartazesDB(acervoCartazes acervoCartazes) {
+    public static boolean excluirAcervoCartazesDB(acervoCartazes acervoCartazes) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -151,7 +151,7 @@ public class dao_acervoCartazes {
         return flag;
     }
 
-    public static boolean getAllAcervoCartazesDB(ArrayList<Acervo> listAcervo) {
+    public static boolean getAllAcervoCartazesDB(ArrayList<Acervo> listAcervo) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 

@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class dao_acervoMapas {
-    public static boolean inserirAcervoMapasDB(acervoMapas acervoMapas) {
+    public static boolean inserirAcervoMapasDB(acervoMapas acervoMapas) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -62,7 +62,7 @@ public class dao_acervoMapas {
         return flag;
     }
 
-    public static boolean alterarAcervoMapasDB(acervoMapas acervoMapas) {
+    public static boolean alterarAcervoMapasDB(acervoMapas acervoMapas) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -116,7 +116,7 @@ public class dao_acervoMapas {
         return flag;
     }
 
-    public static boolean excluirAcervoMapasDB(acervoMapas acervoMapas) {
+    public static boolean excluirAcervoMapasDB(acervoMapas acervoMapas) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -154,7 +154,7 @@ public class dao_acervoMapas {
         return flag;
     }
 
-    public static boolean getAllAcervoMapasDB(ArrayList<Acervo> listAcervo) {
+    public static boolean getAllAcervoMapasDB(ArrayList<Acervo> listAcervo) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 

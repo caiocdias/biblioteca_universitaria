@@ -1,24 +1,24 @@
 package uemg.views.views_visualizar;
 
+import uemg.dao.dao_acervoLivros;
+import uemg.models.classes.Acervo;
+import uemg.models.classes.acervoLivros;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import uemg.dao.dao_acervoAcademicos;
-import uemg.models.classes.Acervo;
-import uemg.models.classes.acervoAcademicos;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-public class view_visualizar_acervoAcademicos {
-    private JTable tableAcervo;
+public class view_visualizar_acervoLivros {
     private JPanel panelVisualizar;
+    private JTable tableAcervo;
     private JButton btnExcluir;
     private DefaultTableModel tableModel;
 
-    public view_visualizar_acervoAcademicos() {
-        JFrame frame = new JFrame("Visualizar Acervo Acadêmico");
-        panelVisualizar = new JPanel(new BorderLayout());
+    public view_visualizar_acervoLivros() {
+        JFrame frame = new JFrame("Visualizar Acervo Livros");
+        panelVisualizar = new JPanel(new BorderLayout());  // Usando BorderLayout no painel principal
         frame.setContentPane(panelVisualizar);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(800, 400);
@@ -29,14 +29,14 @@ public class view_visualizar_acervoAcademicos {
 
         btnExcluir = new JButton("Excluir registro selecionado");
         btnExcluir.addActionListener(e -> deleteSelectedRow());
-        panelVisualizar.add(btnExcluir, BorderLayout.SOUTH);
+        panelVisualizar.add(btnExcluir, BorderLayout.SOUTH);  // Adiciona o botão na parte inferior
 
         frame.pack();
         frame.setVisible(true);
     }
 
     private void initializeTable() {
-        tableModel = new DefaultTableModel(new Object[]{"ID", "Título", "Ano", "Autor", "Emprestado", "CDU", "Palavras-chave", "Tipo", "Editora", "Cidade", "DOI"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"ID", "Título", "Ano", "Autor", "Emprestado", "CDU", "Palavras-chave", "Qtd. Páginas", "ISBN", "Cidade", "Editora", "Edicao"}, 0);
         tableAcervo.setModel(tableModel);
         JScrollPane scrollPane = new JScrollPane(tableAcervo);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -48,22 +48,23 @@ public class view_visualizar_acervoAcademicos {
     private void loadTableData() {
         try {
             ArrayList<Acervo> acervos = new ArrayList<Acervo>();
-            dao_acervoAcademicos.getAllAcervoAcademicosDB(acervos);
+            dao_acervoLivros.getAllAcervoLivros(acervos);
             for (Acervo acervo : acervos) {
-                if (acervo instanceof acervoAcademicos) {
-                    acervoAcademicos academico = (acervoAcademicos) acervo;
+                if (acervo instanceof acervoLivros) {
+                    acervoLivros livro = (acervoLivros) acervo;
                     tableModel.addRow(new Object[]{
-                            academico.getAcervoId(),
-                            academico.getAcervoTitulo(),
-                            academico.getAcervoAno(),
-                            academico.getAcervoAutores(),
-                            academico.isAcervoFlagEmprestado(),
-                            academico.getAcervoCDU(),
-                            academico.getAcervoPalavrasChave(),
-                            academico.getAcademicosTipo().getDescricao(),
-                            academico.getAcademicosEditora(),
-                            academico.getAcademicosCidade(),
-                            academico.getAcademicosDOI()
+                            livro.getAcervoId(),
+                            livro.getAcervoTitulo(),
+                            livro.getAcervoAno(),
+                            livro.getAcervoAutores(),
+                            livro.isAcervoFlagEmprestado(),
+                            livro.getAcervoCDU(),
+                            livro.getAcervoPalavrasChave(),
+                            livro.getLivrosQtdPaginas(),
+                            livro.getLivrosISBN(),
+                            livro.getLivrosCidade(),
+                            livro.getLivrosEditora(),
+                            livro.getLivrosEdicao()
                     });
                 }
             }
@@ -77,10 +78,10 @@ public class view_visualizar_acervoAcademicos {
         int selectedRow = tableAcervo.getSelectedRow();
         if (selectedRow >= 0) {
             int acervoId = (int) tableModel.getValueAt(selectedRow, 0);
-            acervoAcademicos acervoAux = new acervoAcademicos();
+            acervoLivros acervoAux = new acervoLivros();
             acervoAux.setAcervoId(acervoId);
             try {
-                if (dao_acervoAcademicos.excluirAcervoAcademicosDB(acervoAux)) {
+                if (dao_acervoLivros.excluirAcervoLivros(acervoAux)) {
                     tableModel.removeRow(selectedRow);
                     JOptionPane.showMessageDialog(panelVisualizar, "Registro excluído com sucesso.");
                 } else {
@@ -110,19 +111,15 @@ public class view_visualizar_acervoAcademicos {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelVisualizar = new JPanel();
         panelVisualizar.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.add(panelVisualizar, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         tableAcervo = new JTable();
         panelVisualizar.add(tableAcervo, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         btnExcluir = new JButton();
         btnExcluir.setText("Excluir registro selecionado");
         panelVisualizar.add(btnExcluir, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-    }
-
-    /**
-     * @noinspection ALL
-     */
-    public JComponent $$$getRootComponent$$$() {
-        return panelVisualizar;
     }
 }

@@ -14,7 +14,7 @@ public enum midiaTipo {
     }
     
     public String getDescricao() {
-        return this.descricao;
+        return descricao;
     }
     
 }

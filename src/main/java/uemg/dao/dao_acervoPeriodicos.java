@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class dao_acervoPeriodicos {
-    public static boolean inserirAcervoPeriodicosDB(acervoPeriodicos acervoPeriodicos) {
+    public static boolean inserirAcervoPeriodicosDB(acervoPeriodicos acervoPeriodicos) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -67,7 +67,7 @@ public class dao_acervoPeriodicos {
         return flag;
     }
 
-    public static boolean alterarAcervoPeriodicosDB(acervoPeriodicos acervoPeriodicos) {
+    public static boolean alterarAcervoPeriodicosDB(acervoPeriodicos acervoPeriodicos) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -125,7 +125,7 @@ public class dao_acervoPeriodicos {
         return flag;
     }
 
-    public static boolean excluirAcervoPeriodicosDB(acervoPeriodicos acervoPeriodicos) {
+    public static boolean excluirAcervoPeriodicosDB(acervoPeriodicos acervoPeriodicos) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 
@@ -163,7 +163,7 @@ public class dao_acervoPeriodicos {
         return flag;
     }
 
-    public static boolean getAllAcervoPeriodicos(ArrayList<Acervo> listAcervo) {
+    public static boolean getAllAcervoPeriodicos(ArrayList<Acervo> listAcervo) throws SQLException {
         Connection connection = MySqlConnectionSingleton.getInstance().getConnection();
         boolean flag = false;
 

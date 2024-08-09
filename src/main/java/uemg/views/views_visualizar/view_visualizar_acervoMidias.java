@@ -1,23 +1,24 @@
 package uemg.views.views_visualizar;
 
+
+import uemg.dao.dao_acervoMidias;
+import uemg.models.classes.Acervo;
+import uemg.models.classes.acervoMidias;
+import uemg.models.enums.midiaTipo;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import uemg.dao.dao_acervoAcademicos;
-import uemg.models.classes.Acervo;
-import uemg.models.classes.acervoAcademicos;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-public class view_visualizar_acervoAcademicos {
-    private JTable tableAcervo;
+public class view_visualizar_acervoMidias {
     private JPanel panelVisualizar;
+    private JTable tableAcervo;
     private JButton btnExcluir;
     private DefaultTableModel tableModel;
 
-    public view_visualizar_acervoAcademicos() {
-        JFrame frame = new JFrame("Visualizar Acervo Acadêmico");
+    public view_visualizar_acervoMidias() {
+        JFrame frame = new JFrame("Visualizar Acervo Midias");
         panelVisualizar = new JPanel(new BorderLayout());
         frame.setContentPane(panelVisualizar);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -36,7 +37,7 @@ public class view_visualizar_acervoAcademicos {
     }
 
     private void initializeTable() {
-        tableModel = new DefaultTableModel(new Object[]{"ID", "Título", "Ano", "Autor", "Emprestado", "CDU", "Palavras-chave", "Tipo", "Editora", "Cidade", "DOI"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"ID", "Título", "Ano", "Autor", "Emprestado", "CDU", "Palavras-chave", "Produtora", "ISMN", "Tipo"}, 0);
         tableAcervo.setModel(tableModel);
         JScrollPane scrollPane = new JScrollPane(tableAcervo);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -48,22 +49,21 @@ public class view_visualizar_acervoAcademicos {
     private void loadTableData() {
         try {
             ArrayList<Acervo> acervos = new ArrayList<Acervo>();
-            dao_acervoAcademicos.getAllAcervoAcademicosDB(acervos);
+            dao_acervoMidias.getAllAcervoMidiasDB(acervos);
             for (Acervo acervo : acervos) {
-                if (acervo instanceof acervoAcademicos) {
-                    acervoAcademicos academico = (acervoAcademicos) acervo;
+                if (acervo instanceof acervoMidias) {
+                    acervoMidias midia = (acervoMidias) acervo;
                     tableModel.addRow(new Object[]{
-                            academico.getAcervoId(),
-                            academico.getAcervoTitulo(),
-                            academico.getAcervoAno(),
-                            academico.getAcervoAutores(),
-                            academico.isAcervoFlagEmprestado(),
-                            academico.getAcervoCDU(),
-                            academico.getAcervoPalavrasChave(),
-                            academico.getAcademicosTipo().getDescricao(),
-                            academico.getAcademicosEditora(),
-                            academico.getAcademicosCidade(),
-                            academico.getAcademicosDOI()
+                            midia.getAcervoId(),
+                            midia.getAcervoTitulo(),
+                            midia.getAcervoAno(),
+                            midia.getAcervoAutores(),
+                            midia.isAcervoFlagEmprestado(),
+                            midia.getAcervoCDU(),
+                            midia.getAcervoPalavrasChave(),
+                            midia.getMidiaProdutora(),
+                            midia.getMidiaISMN(),
+                            midia.getMidiaTipo().getDescricao()
                     });
                 }
             }
@@ -77,10 +77,10 @@ public class view_visualizar_acervoAcademicos {
         int selectedRow = tableAcervo.getSelectedRow();
         if (selectedRow >= 0) {
             int acervoId = (int) tableModel.getValueAt(selectedRow, 0);
-            acervoAcademicos acervoAux = new acervoAcademicos();
+            acervoMidias acervoAux = new acervoMidias();
             acervoAux.setAcervoId(acervoId);
             try {
-                if (dao_acervoAcademicos.excluirAcervoAcademicosDB(acervoAux)) {
+                if (dao_acervoMidias.excluirAcervoMidiasDB(acervoAux)) {
                     tableModel.removeRow(selectedRow);
                     JOptionPane.showMessageDialog(panelVisualizar, "Registro excluído com sucesso.");
                 } else {
@@ -110,19 +110,15 @@ public class view_visualizar_acervoAcademicos {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelVisualizar = new JPanel();
         panelVisualizar.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.add(panelVisualizar, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         tableAcervo = new JTable();
         panelVisualizar.add(tableAcervo, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         btnExcluir = new JButton();
         btnExcluir.setText("Excluir registro selecionado");
         panelVisualizar.add(btnExcluir, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-    }
-
-    /**
-     * @noinspection ALL
-     */
-    public JComponent $$$getRootComponent$$$() {
-        return panelVisualizar;
     }
 }

@@ -1,7 +1,7 @@
 package uemg.views;
 
 import uemg.views.views_cadastro.*;
-import uemg.views.views_visualizar.view_visualizar_acervoAcademicos;
+import uemg.views.views_visualizar.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -155,6 +155,48 @@ public class view_janela_principal {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new view_visualizar_acervoAcademicos();
+            }
+        });
+
+        visualizarAcervoCartazesItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoCartazes();
+            }
+        });
+
+        visualizarAcervoLivrosItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoLivros();
+            }
+        });
+
+        visualizarAcervoMapasItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoMapas();
+            }
+        });
+
+        visualizarAcervoMidiasItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoMidias();
+            }
+        });
+
+        visualizarAcervoPeriodicosItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoPeriodicos();
+            }
+        });
+
+        visualizarAcervoRelatoriosItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new view_visualizar_acervoRelatorios();
             }
         });
     }
