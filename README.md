@@ -4,10 +4,16 @@
 ## Sobre o Projeto
 Este projeto visa o desenvolvimento de um sistema de gerenciamento de acervo para uma biblioteca universitária. O sistema é implementado em Java utilizando Maven como gerenciador de dependências. Ele permite o cadastro, manutenção, empréstimo e consulta de itens do acervo, que incluem livros, periódicos, trabalhos acadêmicos, relatórios, mídias, cartazes e mapas.
 
+## Membros do Grupo
+- Caio Cezar Dias
+- Isabely Toledo de Melo
+- Thaissa Fernandes
+- Luis Felippe
+- Maicon Fernandes
+
 ## Estrutura do Repositório
 O repositório está estruturado da seguinte maneira:
 - `src/main/java`: Contém o código-fonte do projeto.
-- `src/test/java`: Contém os testes unitários para as funcionalidades implementadas.
 - `pom.xml`: Arquivo de configuração do Maven, que gerencia as dependências e outras diretivas de construção do projeto.
 
 ## Modelo de Classes
@@ -39,8 +45,3 @@ O sistema é baseado em uma hierarquia de classes que representam os diferentes 
    ```
    java -jar target/nome-do-artefato-gerado.jar
    ```
-
-## Contato
-Nome do Responsável - caio.1698570@discente.uemg.br
-
-GitHub: [https://github.com/caiocdias](https://github.com/caiocdias)
